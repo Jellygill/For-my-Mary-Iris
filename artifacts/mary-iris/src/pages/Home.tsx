@@ -265,29 +265,35 @@ export default function Home() {
 
         {/* Section 4: Hidden Message */}
         <section className="w-full flex flex-row items-center justify-center gap-8 flex-wrap" data-testid="section-hidden-message">
-          <motion.button
-            data-testid="button-reveal-message"
-            onClick={() => setMessageRevealed(true)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            whileHover={{ scale: 1.06 }}
-            whileTap={{ scale: 0.97 }}
-            className="relative shrink-0 px-10 py-5 rounded-full font-serif text-xl cursor-pointer overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, hsla(330, 85%, 60%, 0.15), hsla(345, 80%, 60%, 0.12))",
-              border: "1px solid hsla(330, 90%, 72%, 0.35)",
-              color: "hsl(330 90% 80%)",
-              boxShadow: "0 0 30px hsla(330, 90%, 60%, 0.18), 0 0 60px hsla(345, 85%, 60%, 0.1)",
-            }}
-          >
-            <motion.div
-              className="absolute inset-0 rounded-full opacity-0"
-              whileHover={{ opacity: 1 }}
-              style={{ background: "linear-gradient(135deg, hsla(330, 90%, 72%, 0.1), hsla(345, 85%, 75%, 0.1))" }}
-            />
-            <span className="relative z-10">Click me</span>
-          </motion.button>
+          <AnimatePresence>
+            {!messageRevealed && (
+              <motion.button
+                key="reveal-button"
+                data-testid="button-reveal-message"
+                onClick={() => setMessageRevealed(true)}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.85 }}
+                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative shrink-0 px-10 py-5 rounded-full font-serif text-xl cursor-pointer overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, hsla(330, 85%, 60%, 0.15), hsla(345, 80%, 60%, 0.12))",
+                  border: "1px solid hsla(330, 90%, 72%, 0.35)",
+                  color: "hsl(330 90% 80%)",
+                  boxShadow: "0 0 30px hsla(330, 90%, 60%, 0.18), 0 0 60px hsla(345, 85%, 60%, 0.1)",
+                }}
+              >
+                <motion.div
+                  className="absolute inset-0 rounded-full opacity-0"
+                  whileHover={{ opacity: 1 }}
+                  style={{ background: "linear-gradient(135deg, hsla(330, 90%, 72%, 0.1), hsla(345, 85%, 75%, 0.1))" }}
+                />
+                <span className="relative z-10">Click me</span>
+              </motion.button>
+            )}
+          </AnimatePresence>
 
           <AnimatePresence>
             {messageRevealed && (
