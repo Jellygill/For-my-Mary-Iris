@@ -311,7 +311,7 @@ export default function Home() {
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                   style={{ background: "conic-gradient(from 0deg, transparent, hsla(330, 90%, 72%, 0.18), transparent, hsla(345, 85%, 75%, 0.12), transparent)" }}
                 />
-                <div className="relative z-10 font-serif text-xl leading-relaxed space-y-4" style={{ color: "hsl(328 60% 88%)" }}>
+                <div className="relative z-10 font-serif text-xl leading-relaxed space-y-4 text-justify" style={{ color: "hsl(328 60% 88%)" }}>
                   <p>I don't think you realize how much comfort you bring to people just by being yourself, honey. Parang ang gaan lang ng pakiramdam whenever you're around. You have this softness in you that makes things feel a little less heavy.</p>
                   <p>I just hope na today, kahit papaano, maramdaman mo rin how loved and appreciated you really are.</p>
                 </div>
