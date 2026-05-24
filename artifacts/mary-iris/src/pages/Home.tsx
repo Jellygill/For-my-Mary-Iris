@@ -86,162 +86,6 @@ const fadeUp = {
   },
 };
 
-/* ─── music player ────────────────────────────────────────────────── */
-
-function MusicPlayer() {
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const [playing, setPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [showVolume, setShowVolume] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [hovered, setHovered] = useState(false);
-
-  // autoplay attempt (browsers usually block unless muted first, so we keep it as opt-in)
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.volume = volume;
-    audio.loop = true;
-  }, []);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio.volume = volume;
-  }, [volume]);
-
-  const togglePlay = useCallback(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (playing) {
-      audio.pause();
-      setPlaying(false);
-    } else {
-      audio.play().then(() => setPlaying(true)).catch(() => {});
-    }
-  }, [playing]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    const onTime = () => {
-      if (audio.duration) setProgress(audio.currentTime / audio.duration);
-    };
-    audio.addEventListener("timeupdate", onTime);
-    return () => audio.removeEventListener("timeupdate", onTime);
-  }, []);
-
-  const seek = (e: React.MouseEvent<HTMLDivElement>) => {
-    const audio = audioRef.current;
-    if (!audio || !audio.duration) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const ratio = (e.clientX - rect.left) / rect.width;
-    audio.currentTime = ratio * audio.duration;
-  };
-
-  return (
-    <>
-      <audio ref={audioRef} src="/magnolia.mp3" preload="auto" />
-
-      <motion.div
-        id="music-player"
-        className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2"
-        initial={{ opacity: 0, scale: 0.7, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ delay: 3.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => { setHovered(false); setShowVolume(false); }}
-      >
-        {/* expanded panel */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              key="panel"
-              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 10, scale: 0.95 }}
-              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="rounded-2xl px-4 py-3 flex flex-col gap-2 w-52"
-              style={{
-                background: "linear-gradient(135deg, hsla(335,50%,10%,0.95), hsla(325,40%,9%,0.92))",
-                border: "1px solid hsla(330,80%,68%,0.25)",
-                backdropFilter: "blur(18px)",
-                boxShadow: "0 8px 40px hsla(330,90%,60%,0.18)",
-              }}
-            >
-              <p className="font-serif text-xs italic text-center" style={{ color: "hsl(330 60% 80%)" }}>
-                ♪ Magnolia — Instrumental
-              </p>
-
-              {/* seek bar */}
-              <div
-                className="w-full h-1 rounded-full cursor-pointer relative overflow-hidden"
-                style={{ background: "hsla(330,40%,30%,0.4)" }}
-                onClick={seek}
-              >
-                <motion.div
-                  className="absolute inset-y-0 left-0 rounded-full"
-                  style={{
-                    width: `${progress * 100}%`,
-                    background: "linear-gradient(90deg, hsl(330 90% 68%), hsl(348 85% 74%))",
-                  }}
-                />
-              </div>
-
-              {/* volume */}
-              <div className="flex items-center gap-2">
-                <span className="text-xs" style={{ color: "hsl(330 50% 75%)" }}>🔊</span>
-                <input
-                  type="range"
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  value={volume}
-                  onChange={(e) => setVolume(parseFloat(e.target.value))}
-                  className="music-volume-slider flex-1 h-1 cursor-pointer"
-                />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* play/pause button */}
-        <motion.button
-          id="btn-music-toggle"
-          onClick={togglePlay}
-          whileHover={{ scale: 1.12 }}
-          whileTap={{ scale: 0.93 }}
-          className="relative w-14 h-14 rounded-full flex items-center justify-center cursor-pointer overflow-hidden"
-          style={{
-            background: "linear-gradient(135deg, hsla(330,85%,55%,0.22), hsla(348,80%,55%,0.18))",
-            border: "1px solid hsla(330,90%,72%,0.4)",
-            boxShadow: playing
-              ? "0 0 24px hsla(330,90%,68%,0.6), 0 0 48px hsla(330,90%,68%,0.3)"
-              : "0 0 14px hsla(330,90%,68%,0.2)",
-            backdropFilter: "blur(12px)",
-          }}
-          aria-label={playing ? "Pause music" : "Play music"}
-        >
-          {/* spinning ring when playing */}
-          {playing && (
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              style={{
-                background: "conic-gradient(from 0deg, transparent 60%, hsla(330,90%,72%,0.5) 100%)",
-              }}
-            />
-          )}
-          <span className="relative z-10 text-xl select-none" style={{ color: "hsl(330 90% 80%)" }}>
-            {playing ? "⏸" : "▶"}
-          </span>
-        </motion.button>
-      </motion.div>
-    </>
-  );
-}
-
 /* ─── cinematic intro overlay ─────────────────────────────────────── */
 
 function IntroOverlay({ onDone }: { onDone: () => void }) {
@@ -335,12 +179,50 @@ export default function Home() {
   const [messageRevealed, setMessageRevealed] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [introDone, setIntroDone] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const { scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
     setMounted(true);
+
+    // Create and configure loop background music
+    const audio = new Audio("/magnolia.mp3");
+    audio.loop = true;
+    audio.volume = 0.5;
+    audioRef.current = audio;
+
+    const startAudio = () => {
+      audio.play().then(() => {
+        removeInteractionListeners();
+      }).catch(() => {
+        // Blocked initially by browser autoplay, waits for scroll/click/touch
+      });
+    };
+
+    const handleInteraction = () => {
+      startAudio();
+    };
+
+    const removeInteractionListeners = () => {
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
+      window.removeEventListener("scroll", handleInteraction);
+    };
+
+    // Add listeners to play audio on any user gesture
+    window.addEventListener("click", handleInteraction);
+    window.addEventListener("touchstart", handleInteraction);
+    window.addEventListener("scroll", handleInteraction);
+
+    // Attempt immediate play
+    startAudio();
+
+    return () => {
+      removeInteractionListeners();
+      audio.pause();
+    };
   }, []);
 
   return (
@@ -348,9 +230,6 @@ export default function Home() {
 
       {/* ── cinematic intro ── */}
       <IntroOverlay onDone={() => setIntroDone(true)} />
-
-      {/* ── music player ── */}
-      <MusicPlayer />
 
       {/* ── scroll progress bar ── */}
       <motion.div
