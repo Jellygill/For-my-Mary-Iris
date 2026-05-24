@@ -231,7 +231,7 @@ export default function Home() {
     <div className="min-h-screen w-full relative overflow-x-hidden bg-background text-foreground selection:bg-primary/30">
 
       {/* ── hidden audio element for maximum browser compatibility ── */}
-      <audio ref={audioRef} src={audioPath} loop preload="auto" style={{ display: "none" }} />
+      <audio ref={audioRef} src={audioPath} loop autoPlay preload="auto" style={{ display: "none" }} />
 
       {/* ── cinematic intro ── */}
       <IntroOverlay onDone={() => setIntroDone(true)} />
