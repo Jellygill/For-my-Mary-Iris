@@ -23,22 +23,22 @@ const sparkles = Array.from({ length: 18 }, (_, i) => ({
 const cardData = [
   {
     title: "When You Feel Tired",
-    content: "Rest. Not as a reward for finishing everything, but because you deserve rest just for being. Let this be your permission slip.",
+    content: "Magpahinga ka hon. Not as a reward for finishing everything, but because you deserve rest just for being. Let this be your permission slip.",
     accent: "hsl(330 90% 72%)",
   },
   {
     title: "When Things Feel Heavy",
-    content: "You do not have to figure it all out tonight. Some things are allowed to sit unresolved. Just breathe. I have got you.",
+    content: "You do not have to figure it all out tonight. Some things are allowed to sit unresolved. Just breathe. I always got your back my Honey. I'll stay with you when things get heavy okay?",
     accent: "hsl(345 85% 75%)",
   },
   {
     title: "What I Want You to Remember",
-    content: "You are deeply loved. Not for what you do, not for how strong you are — but simply because you exist, and you are mine to love.",
+    content: "You are deeply loved. Not for what you do, not for how strong you are but simply because you exist. Mamahalin kita kahit ano man ang mangyari. Nandito ako sa tabi mo always!",
     accent: "hsl(320 80% 74%)",
   },
   {
     title: "For My Honey",
-    content: "On your hardest days, come back here. Read this. And remember there is someone out there who thinks about you with so much gentleness it almost hurts.",
+    content: "On your hardest days, come back here for a little while. Read these words slowly, and remember that somewhere in this world is someone who thinks of you with so much care, softness, and love.\n\nKahit mabigat ang nararamdaman mo, kahit pagod na ang puso mo, you'll never be alone because I'm always here.",
     accent: "hsl(338 75% 76%)",
   },
 ];
@@ -254,9 +254,11 @@ export default function Home() {
               >
                 {card.title}
               </h3>
-              <p className="font-sans text-lg font-light leading-relaxed" style={{ color: "hsl(340 20% 84%)" }}>
-                {card.content}
-              </p>
+              <div className="font-sans text-lg font-light leading-relaxed space-y-3" style={{ color: "hsl(340 20% 84%)" }}>
+                {card.content.split("\n\n").map((para, i) => (
+                  <p key={i}>{para}</p>
+                ))}
+              </div>
             </motion.div>
           ))}
         </section>
