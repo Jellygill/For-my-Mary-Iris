@@ -176,10 +176,12 @@ function IntroOverlay({ onDone }: { onDone: () => void }) {
 /* ─── main component ──────────────────────────────────────────────── */
 
 export default function Home() {
+  const [started, setStarted] = useState(false);
   const [messageRevealed, setMessageRevealed] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [introDone, setIntroDone] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const wantsMusicRef = useRef(false);
 
   const baseUrl = import.meta.env.BASE_URL || "/";
   const audioPath = baseUrl.endsWith("/") ? `${baseUrl}magnolia.mp3` : `${baseUrl}/magnolia.mp3`;
@@ -187,51 +189,146 @@ export default function Home() {
   const { scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  const playMusic = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    audio.volume = 0.5;
+    void audio.play().catch(() => {});
+  }, []);
+
+  const handleStart = useCallback(() => {
+    wantsMusicRef.current = true;
+    // Play in the same user gesture, before React swaps the welcome screen out.
+    playMusic();
+    setStarted(true);
+  }, [playMusic]);
+
   useEffect(() => {
     setMounted(true);
+  }, []);
 
+  // If the file is still buffering when the user taps, start as soon as it is ready.
+  useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.volume = 0.5;
-
-    const startAudio = () => {
-      audio.play().then(() => {
-        removeInteractionListeners();
-      }).catch(() => {
-        // Blocked initially by browser autoplay, waits for scroll/click/touch
-      });
+    const resumeWhenReady = () => {
+      if (wantsMusicRef.current && audio.paused) playMusic();
     };
 
-    const handleInteraction = () => {
-      startAudio();
-    };
-
-    const removeInteractionListeners = () => {
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-      window.removeEventListener("scroll", handleInteraction);
-    };
-
-    // Add listeners to play audio on any user gesture
-    window.addEventListener("click", handleInteraction);
-    window.addEventListener("touchstart", handleInteraction);
-    window.addEventListener("scroll", handleInteraction);
-
-    // Attempt immediate play
-    startAudio();
-
+    audio.addEventListener("canplay", resumeWhenReady);
+    audio.addEventListener("canplaythrough", resumeWhenReady);
     return () => {
-      removeInteractionListeners();
-      audio.pause();
+      audio.removeEventListener("canplay", resumeWhenReady);
+      audio.removeEventListener("canplaythrough", resumeWhenReady);
     };
-  }, []);
+  }, [playMusic]);
 
   return (
-    <div className="min-h-screen w-full relative overflow-x-hidden bg-background text-foreground selection:bg-primary/30">
+    <>
+      <audio ref={audioRef} src={audioPath} loop preload="auto" style={{ display: "none" }} />
 
-      {/* ── hidden audio element for maximum browser compatibility ── */}
-      <audio ref={audioRef} src={audioPath} loop autoPlay preload="auto" style={{ display: "none" }} />
+      {!started ? (
+      <div className="min-h-screen w-full relative overflow-hidden bg-background text-foreground flex items-center justify-center">
+
+        {/* background orbs for the welcome screen */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          <div
+            className="glowing-orb w-[700px] h-[700px] top-[-250px] left-[-200px]"
+            style={{
+              background: "radial-gradient(circle, hsla(330,90%,65%,0.22) 0%, hsla(345,80%,55%,0.1) 50%, transparent 70%)",
+              animationDuration: "10s",
+            }}
+          />
+          <div
+            className="glowing-orb w-[600px] h-[600px] bottom-[-250px] right-[-200px]"
+            style={{
+              background: "radial-gradient(circle, hsla(320,80%,60%,0.2) 0%, transparent 70%)",
+              animationDuration: "14s",
+              animationDelay: "3s",
+            }}
+          />
+        </div>
+
+        {/* sparkles on welcome */}
+        {mounted && (
+          <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            {sparkles.slice(0, 10).map((s) => (
+              <div
+                key={s.id}
+                className="sparkle"
+                style={{
+                  left: s.left,
+                  top: s.top,
+                  width: s.size,
+                  height: s.size,
+                  animationDelay: s.delay,
+                  animationDuration: s.duration,
+                  background: s.color,
+                  borderRadius: "50%",
+                  boxShadow: `0 0 ${s.size} ${s.color}`,
+                }}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* welcome card */}
+        <motion.button
+          onClick={handleStart}
+          className="relative z-10 flex flex-col items-center gap-8 cursor-pointer group"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          style={{ background: "none", border: "none" }}
+        >
+          {/* pulsing heart */}
+          <motion.span
+            className="text-8xl md:text-9xl select-none"
+            animate={{
+              scale: [1, 1.12, 1],
+              filter: [
+                "drop-shadow(0 0 20px hsla(330,90%,72%,0.5))",
+                "drop-shadow(0 0 40px hsla(330,90%,72%,0.9)) drop-shadow(0 0 80px hsla(330,90%,72%,0.4))",
+                "drop-shadow(0 0 20px hsla(330,90%,72%,0.5))",
+              ],
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            style={{ color: "hsl(330 90% 72%)" }}
+          >
+            ♥
+          </motion.span>
+
+          {/* title */}
+          <motion.p
+            className="font-serif text-3xl md:text-4xl tracking-tight"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            style={{
+              background: "linear-gradient(135deg, hsl(330 90% 78%), hsl(345 85% 82%), hsl(320 80% 78%))",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            For my Mary Iris
+          </motion.p>
+
+          {/* tap instruction */}
+          <motion.p
+            className="font-serif text-lg italic tracking-widest"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.7, 0.4, 0.7] }}
+            transition={{ delay: 1, duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{ color: "hsl(330 60% 72%)" }}
+          >
+            tap to open ♪
+          </motion.p>
+        </motion.button>
+      </div>
+      ) : (
+    <div className="min-h-screen w-full relative overflow-x-hidden bg-background text-foreground selection:bg-primary/30">
 
       {/* ── cinematic intro ── */}
       <IntroOverlay onDone={() => setIntroDone(true)} />
@@ -643,5 +740,7 @@ export default function Home() {
 
       </div>
     </div>
+      )}
+    </>
   );
 }
