@@ -350,7 +350,7 @@ export default function Home() {
             className="relative z-10 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight font-light italic pt-8 px-8"
             style={{ color: "hsl(340 35% 94%)" }}
           >
-            Like a lily reaching quietly toward the light, my soul finds its peace in you. It&apos;s soft, gentle, and beautiful in ways words could never fully hold.
+            "Like a lily reaching quietly toward the light, my soul finds its peace in you. It's soft, gentle, and beautiful in ways words could never fully hold."
           </h2>
           <motion.div
             className="relative z-10 mt-8 mx-auto w-32 h-px"
