@@ -17,29 +17,29 @@ const sparkles = Array.from({ length: 18 }, (_, i) => ({
   delay: `${(i * 0.9) % 7}s`,
   duration: `${2.5 + (i * 0.4) % 3}s`,
   size: `${6 + (i * 3) % 10}px`,
-  color: i % 3 === 0 ? "hsl(328 85% 72%)" : i % 3 === 1 ? "hsl(280 70% 68%)" : "hsl(310 75% 80%)",
+  color: i % 3 === 0 ? "hsl(330 90% 75%)" : i % 3 === 1 ? "hsl(345 85% 78%)" : "hsl(315 80% 80%)",
 }));
 
 const cardData = [
   {
     title: "When You Feel Tired",
     content: "Rest. Not as a reward for finishing everything, but because you deserve rest just for being. Let this be your permission slip.",
-    accent: "hsl(328 85% 72%)",
+    accent: "hsl(330 90% 72%)",
   },
   {
     title: "When Things Feel Heavy",
     content: "You do not have to figure it all out tonight. Some things are allowed to sit unresolved. Just breathe. I have got you.",
-    accent: "hsl(280 70% 68%)",
+    accent: "hsl(345 85% 75%)",
   },
   {
     title: "What I Want You to Remember",
     content: "You are deeply loved. Not for what you do, not for how strong you are — but simply because you exist, and you are mine to love.",
-    accent: "hsl(310 75% 75%)",
+    accent: "hsl(320 80% 74%)",
   },
   {
     title: "For My Honey",
     content: "On your hardest days, come back here. Read this. And remember there is someone out there who thinks about you with so much gentleness it almost hurts.",
-    accent: "hsl(295 65% 70%)",
+    accent: "hsl(338 75% 76%)",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function Home() {
         className="fixed top-0 left-0 h-[2px] z-50"
         style={{
           width: progressWidth,
-          background: "linear-gradient(90deg, hsl(328 85% 72%), hsl(280 70% 68%), hsl(328 85% 72%))",
+          background: "linear-gradient(90deg, hsl(330 90% 72%), hsl(345 85% 75%), hsl(330 90% 72%))",
           boxShadow: "0 0 8px hsl(328 85% 72% / 0.8)",
         }}
       />
@@ -71,14 +71,14 @@ export default function Home() {
         <div
           className="glowing-orb w-[700px] h-[700px] top-[-250px] left-[-200px]"
           style={{
-            background: "radial-gradient(circle, hsla(328, 85%, 55%, 0.18) 0%, hsla(280, 70%, 50%, 0.08) 50%, transparent 70%)",
+            background: "radial-gradient(circle, hsla(330, 90%, 65%, 0.22) 0%, hsla(345, 80%, 55%, 0.1) 50%, transparent 70%)",
             animationDuration: "10s",
           }}
         />
         <div
           className="glowing-orb w-[900px] h-[900px] bottom-[-350px] right-[-300px]"
           style={{
-            background: "radial-gradient(circle, hsla(280, 70%, 55%, 0.2) 0%, hsla(310, 60%, 45%, 0.08) 50%, transparent 70%)",
+            background: "radial-gradient(circle, hsla(320, 80%, 60%, 0.2) 0%, hsla(338, 75%, 50%, 0.09) 50%, transparent 70%)",
             animationDuration: "14s",
             animationDelay: "3s",
           }}
@@ -86,7 +86,7 @@ export default function Home() {
         <div
           className="glowing-orb w-[500px] h-[500px] top-[40%] left-[30%]"
           style={{
-            background: "radial-gradient(circle, hsla(310, 75%, 60%, 0.1) 0%, transparent 70%)",
+            background: "radial-gradient(circle, hsla(340, 85%, 70%, 0.1) 0%, transparent 70%)",
             animationDuration: "18s",
             animationDelay: "7s",
           }}
@@ -130,7 +130,7 @@ export default function Home() {
                 fontSize: h.size,
                 color: h.id % 2 === 0
                   ? `hsla(328, 85%, 72%, ${h.opacity})`
-                  : `hsla(280, 70%, 68%, ${h.opacity})`,
+                  : `hsla(345, 85%, 75%, ${h.opacity})`,
               }}
             >
               ♥
@@ -149,7 +149,7 @@ export default function Home() {
             transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
             className="shimmer-title font-serif text-5xl md:text-7xl lg:text-8xl tracking-tight"
             style={{
-              background: "linear-gradient(135deg, hsl(328 85% 78%), hsl(280 70% 72%), hsl(328 85% 82%), hsl(300 75% 75%))",
+              background: "linear-gradient(135deg, hsl(330 90% 78%), hsl(345 85% 82%), hsl(320 80% 78%), hsl(338 90% 83%))",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -171,7 +171,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, delay: 0.6, ease: "easeOut" }}
             className="text-xl md:text-2xl font-light font-serif italic"
-            style={{ color: "hsl(300 30% 82%)" }}
+            style={{ color: "hsl(340 40% 87%)" }}
           >
             Honey, you don't have to carry everything alone.
           </motion.p>
@@ -181,7 +181,7 @@ export default function Home() {
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
             className="mx-auto w-24 h-px"
-            style={{ background: "linear-gradient(90deg, transparent, hsl(328 85% 72%), hsl(280 70% 68%), transparent)" }}
+            style={{ background: "linear-gradient(90deg, transparent, hsl(330 90% 72%), hsl(345 85% 75%), transparent)" }}
           />
         </section>
 
@@ -195,14 +195,14 @@ export default function Home() {
         >
           <div
             className="absolute -inset-8 rounded-3xl opacity-30 blur-2xl"
-            style={{ background: "radial-gradient(ellipse, hsl(280 50% 30%) 0%, transparent 70%)" }}
+            style={{ background: "radial-gradient(ellipse, hsl(330 70% 30%) 0%, transparent 70%)" }}
           />
           <div className="relative rounded-3xl p-10 md:p-14 border"
             style={{
-              background: "linear-gradient(135deg, hsla(280, 40%, 12%, 0.85), hsla(328, 30%, 11%, 0.75))",
+              background: "linear-gradient(135deg, hsla(335, 40%, 11%, 0.88), hsla(325, 35%, 10%, 0.78))",
               backdropFilter: "blur(20px)",
-              borderColor: "hsla(280, 50%, 55%, 0.2)",
-              boxShadow: "0 0 40px hsla(280, 60%, 45%, 0.12), inset 0 1px 0 hsla(328, 85%, 72%, 0.06)",
+              borderColor: "hsla(330, 70%, 65%, 0.2)",
+              boxShadow: "0 0 40px hsla(330, 75%, 55%, 0.14), inset 0 1px 0 hsla(330, 90%, 72%, 0.06)",
             }}
           >
             <h2
@@ -216,7 +216,7 @@ export default function Home() {
               <p>But honey, you do not have to be strong all the time. You are allowed to fall apart a little. You are allowed to feel tired. You are allowed to say this is too much — because it is, and that is okay.</p>
               <p className="font-medium" style={{ color: "hsl(328 85% 78%)" }}>You are not a burden. Not to me. Not ever.</p>
               <p>No matter what today looks like, I want you to know that I see you. Not just the smiling version, not just the version that holds everything together — but all of you. The tired you. The overwhelmed you. The you that just needs someone to sit with her in the quiet.</p>
-              <p className="italic" style={{ color: "hsl(280 50% 82%)" }}>I am here for that. Always.</p>
+              <p className="italic" style={{ color: "hsl(340 60% 88%)" }}>I am here for that. Always.</p>
             </div>
           </div>
         </motion.section>
@@ -233,7 +233,7 @@ export default function Home() {
               whileHover={{ y: -6, scale: 1.02 }}
               className="card-glow group rounded-3xl p-8 border cursor-default transition-colors duration-500"
               style={{
-                background: "linear-gradient(135deg, hsla(280, 35%, 13%, 0.9), hsla(310, 25%, 11%, 0.8))",
+                background: "linear-gradient(135deg, hsla(335, 40%, 12%, 0.9), hsla(325, 30%, 10%, 0.85))",
                 backdropFilter: "blur(16px)",
                 borderColor: `${card.accent}33`,
               }}
@@ -252,7 +252,7 @@ export default function Home() {
               >
                 {card.title}
               </h3>
-              <p className="font-sans text-lg font-light leading-relaxed" style={{ color: "hsl(310 20% 80%)" }}>
+              <p className="font-sans text-lg font-light leading-relaxed" style={{ color: "hsl(340 20% 84%)" }}>
                 {card.content}
               </p>
             </motion.div>
@@ -275,16 +275,16 @@ export default function Home() {
                 whileTap={{ scale: 0.97 }}
                 className="relative px-10 py-5 rounded-full font-serif text-xl cursor-pointer overflow-hidden"
                 style={{
-                  background: "linear-gradient(135deg, hsla(328, 80%, 60%, 0.15), hsla(280, 70%, 55%, 0.15))",
-                  border: "1px solid hsla(328, 85%, 72%, 0.35)",
-                  color: "hsl(328 85% 78%)",
-                  boxShadow: "0 0 30px hsla(328, 85%, 55%, 0.15), 0 0 60px hsla(280, 70%, 50%, 0.1)",
+                  background: "linear-gradient(135deg, hsla(330, 85%, 60%, 0.15), hsla(345, 80%, 60%, 0.12))",
+                  border: "1px solid hsla(330, 90%, 72%, 0.35)",
+                  color: "hsl(330 90% 80%)",
+                  boxShadow: "0 0 30px hsla(330, 90%, 60%, 0.18), 0 0 60px hsla(345, 85%, 60%, 0.1)",
                 }}
               >
                 <motion.div
                   className="absolute inset-0 rounded-full opacity-0"
                   whileHover={{ opacity: 1 }}
-                  style={{ background: "linear-gradient(135deg, hsla(328, 85%, 72%, 0.08), hsla(280, 70%, 68%, 0.08))" }}
+                  style={{ background: "linear-gradient(135deg, hsla(330, 90%, 72%, 0.1), hsla(345, 85%, 75%, 0.1))" }}
                 />
                 <span className="relative z-10">A little something just for you</span>
               </motion.button>
@@ -296,17 +296,17 @@ export default function Home() {
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="max-w-xl text-center rounded-3xl p-10 relative overflow-hidden"
                 style={{
-                  background: "linear-gradient(135deg, hsla(328, 50%, 14%, 0.9), hsla(280, 45%, 13%, 0.9))",
+                  background: "linear-gradient(135deg, hsla(335, 50%, 12%, 0.92), hsla(325, 45%, 11%, 0.88))",
                   backdropFilter: "blur(20px)",
-                  border: "1px solid hsla(328, 85%, 72%, 0.25)",
-                  boxShadow: "0 0 50px hsla(328, 85%, 55%, 0.2), 0 0 100px hsla(280, 70%, 50%, 0.12)",
+                  border: "1px solid hsla(330, 90%, 72%, 0.25)",
+                  boxShadow: "0 0 50px hsla(330, 90%, 60%, 0.22), 0 0 100px hsla(345, 85%, 60%, 0.12)",
                 }}
               >
                 <motion.div
                   className="absolute inset-0 opacity-20"
                   animate={{ rotate: [0, 360] }}
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  style={{ background: "conic-gradient(from 0deg, transparent, hsla(328, 85%, 72%, 0.15), transparent, hsla(280, 70%, 68%, 0.1), transparent)" }}
+                  style={{ background: "conic-gradient(from 0deg, transparent, hsla(330, 90%, 72%, 0.18), transparent, hsla(345, 85%, 75%, 0.12), transparent)" }}
                 />
                 <p
                   className="relative z-10 font-serif text-2xl md:text-3xl leading-relaxed italic"
@@ -329,7 +329,7 @@ export default function Home() {
         >
           <div
             className="quote-glow absolute inset-0 rounded-[3rem]"
-            style={{ background: "linear-gradient(135deg, hsla(328, 50%, 15%, 0.6), hsla(280, 45%, 13%, 0.5))", backdropFilter: "blur(10px)", border: "1px solid hsla(280, 50%, 55%, 0.15)" }}
+            style={{ background: "linear-gradient(135deg, hsla(335, 55%, 14%, 0.65), hsla(325, 45%, 12%, 0.55))", backdropFilter: "blur(10px)", border: "1px solid hsla(330, 75%, 65%, 0.18)" }}
           />
           <motion.div
             className="absolute -top-3 left-1/2 -translate-x-1/2 text-5xl"
@@ -341,7 +341,7 @@ export default function Home() {
           </motion.div>
           <h2
             className="relative z-10 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight font-light italic pt-8 px-8"
-            style={{ color: "hsl(310 30% 92%)" }}
+            style={{ color: "hsl(340 35% 94%)" }}
           >
             "No matter how exhausting life becomes, Honey, I will still be here — loving you quietly through all of it."
           </h2>
@@ -351,7 +351,7 @@ export default function Home() {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            style={{ background: "linear-gradient(90deg, transparent, hsl(328 85% 72%), hsl(280 70% 68%), transparent)" }}
+            style={{ background: "linear-gradient(90deg, transparent, hsl(330 90% 72%), hsl(345 85% 76%), transparent)" }}
           />
         </motion.section>
 
@@ -363,7 +363,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 1.5 }}
             className="font-serif italic text-lg"
-            style={{ color: "hsl(310 25% 60%)" }}
+            style={{ color: "hsl(340 30% 65%)" }}
           >
             Made with love, for you.
           </motion.p>
