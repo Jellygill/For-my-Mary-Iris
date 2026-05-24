@@ -264,41 +264,40 @@ export default function Home() {
         </section>
 
         {/* Section 4: Hidden Message */}
-        <section className="w-full flex flex-col items-center justify-center min-h-[280px]" data-testid="section-hidden-message">
-          <AnimatePresence mode="wait">
-            {!messageRevealed ? (
-              <motion.button
-                key="reveal-button"
-                data-testid="button-reveal-message"
-                onClick={() => setMessageRevealed(true)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.85, y: -10 }}
-                transition={{ duration: 0.5 }}
-                whileHover={{ scale: 1.06 }}
-                whileTap={{ scale: 0.97 }}
-                className="relative px-10 py-5 rounded-full font-serif text-xl cursor-pointer overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg, hsla(330, 85%, 60%, 0.15), hsla(345, 80%, 60%, 0.12))",
-                  border: "1px solid hsla(330, 90%, 72%, 0.35)",
-                  color: "hsl(330 90% 80%)",
-                  boxShadow: "0 0 30px hsla(330, 90%, 60%, 0.18), 0 0 60px hsla(345, 85%, 60%, 0.1)",
-                }}
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-full opacity-0"
-                  whileHover={{ opacity: 1 }}
-                  style={{ background: "linear-gradient(135deg, hsla(330, 90%, 72%, 0.1), hsla(345, 85%, 75%, 0.1))" }}
-                />
-                <span className="relative z-10">A little something just for you</span>
-              </motion.button>
-            ) : (
+        <section className="w-full flex flex-row items-center justify-center gap-8 flex-wrap" data-testid="section-hidden-message">
+          <motion.button
+            data-testid="button-reveal-message"
+            onClick={() => setMessageRevealed(true)}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.97 }}
+            className="relative shrink-0 px-10 py-5 rounded-full font-serif text-xl cursor-pointer overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, hsla(330, 85%, 60%, 0.15), hsla(345, 80%, 60%, 0.12))",
+              border: "1px solid hsla(330, 90%, 72%, 0.35)",
+              color: "hsl(330 90% 80%)",
+              boxShadow: "0 0 30px hsla(330, 90%, 60%, 0.18), 0 0 60px hsla(345, 85%, 60%, 0.1)",
+            }}
+          >
+            <motion.div
+              className="absolute inset-0 rounded-full opacity-0"
+              whileHover={{ opacity: 1 }}
+              style={{ background: "linear-gradient(135deg, hsla(330, 90%, 72%, 0.1), hsla(345, 85%, 75%, 0.1))" }}
+            />
+            <span className="relative z-10">Click me</span>
+          </motion.button>
+
+          <AnimatePresence>
+            {messageRevealed && (
               <motion.div
                 key="revealed-message"
-                initial={{ opacity: 0, scale: 0.88, y: 30 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="max-w-xl text-center rounded-3xl p-10 relative overflow-hidden"
+                initial={{ opacity: 0, x: 30, scale: 0.95 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: 30, scale: 0.95 }}
+                transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="max-w-lg text-left rounded-3xl p-8 relative overflow-hidden"
                 style={{
                   background: "linear-gradient(135deg, hsla(335, 50%, 12%, 0.92), hsla(325, 45%, 11%, 0.88))",
                   backdropFilter: "blur(20px)",
@@ -312,7 +311,7 @@ export default function Home() {
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                   style={{ background: "conic-gradient(from 0deg, transparent, hsla(330, 90%, 72%, 0.18), transparent, hsla(345, 85%, 75%, 0.12), transparent)" }}
                 />
-                <div className="relative z-10 font-serif text-2xl md:text-3xl leading-relaxed space-y-5" style={{ color: "hsl(328 60% 88%)" }}>
+                <div className="relative z-10 font-serif text-xl leading-relaxed space-y-4" style={{ color: "hsl(328 60% 88%)" }}>
                   <p>I don't think you realize how much comfort you bring to people just by being yourself, honey. Parang ang gaan lang ng pakiramdam whenever you're around. You have this softness in you that makes things feel a little less heavy.</p>
                   <p>I just hope na today, kahit papaano, maramdaman mo rin how loved and appreciated you really are.</p>
                 </div>
