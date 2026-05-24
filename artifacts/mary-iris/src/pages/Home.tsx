@@ -181,19 +181,19 @@ export default function Home() {
   const [introDone, setIntroDone] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  const baseUrl = import.meta.env.BASE_URL || "/";
+  const audioPath = baseUrl.endsWith("/") ? `${baseUrl}magnolia.mp3` : `${baseUrl}/magnolia.mp3`;
+
   const { scrollYProgress } = useScroll();
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   useEffect(() => {
     setMounted(true);
 
-    // Create and configure loop background music
-    const baseUrl = import.meta.env.BASE_URL || "/";
-    const audioPath = baseUrl.endsWith("/") ? `${baseUrl}magnolia.mp3` : `${baseUrl}/magnolia.mp3`;
-    const audio = new Audio(audioPath);
-    audio.loop = true;
+    const audio = audioRef.current;
+    if (!audio) return;
+
     audio.volume = 0.5;
-    audioRef.current = audio;
 
     const startAudio = () => {
       audio.play().then(() => {
@@ -229,6 +229,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen w-full relative overflow-x-hidden bg-background text-foreground selection:bg-primary/30">
+
+      {/* ── hidden audio element for maximum browser compatibility ── */}
+      <audio ref={audioRef} src={audioPath} loop preload="auto" style={{ display: "none" }} />
 
       {/* ── cinematic intro ── */}
       <IntroOverlay onDone={() => setIntroDone(true)} />
