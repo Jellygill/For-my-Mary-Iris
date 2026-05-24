@@ -312,12 +312,10 @@ export default function Home() {
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                   style={{ background: "conic-gradient(from 0deg, transparent, hsla(330, 90%, 72%, 0.18), transparent, hsla(345, 85%, 75%, 0.12), transparent)" }}
                 />
-                <p
-                  className="relative z-10 font-serif text-2xl md:text-3xl leading-relaxed italic"
-                  style={{ color: "hsl(328 60% 88%)" }}
-                >
-                  "You are the kind of person who makes the world softer just by being in it. I hope you know that. I hope you feel it today, even a little."
-                </p>
+                <div className="relative z-10 font-serif text-2xl md:text-3xl leading-relaxed space-y-5" style={{ color: "hsl(328 60% 88%)" }}>
+                  <p>I don't think you realize how much comfort you bring to people just by being yourself, honey. Parang ang gaan lang ng pakiramdam whenever you're around. You have this softness in you that makes things feel a little less heavy.</p>
+                  <p>I just hope na today, kahit papaano, maramdaman mo rin how loved and appreciated you really are.</p>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
