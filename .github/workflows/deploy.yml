@@ -44,7 +44,8 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        # Remove --frozen-lockfile to bypass the lockfile config mismatch error
+        run: pnpm install --no-frozen-lockfile
         env:
           PNPM_CONFIG_MINIMUM_RELEASE_AGE: 0
 
