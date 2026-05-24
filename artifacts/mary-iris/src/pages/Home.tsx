@@ -212,11 +212,13 @@ export default function Home() {
               A letter for you
             </h2>
             <div className="font-serif text-xl md:text-2xl leading-loose space-y-7 font-light" style={{ color: "hsl(320 25% 90%)" }}>
-              <p>My dearest Mary Iris, I know how heavy things feel right now. Family can be the most beautiful thing in the world, and also the most exhausting. You have been carrying so much — and you have been doing it quietly, with grace, even when it costs you.</p>
-              <p>But honey, you do not have to be strong all the time. You are allowed to fall apart a little. You are allowed to feel tired. You are allowed to say this is too much — because it is, and that is okay.</p>
-              <p className="font-medium" style={{ color: "hsl(328 85% 78%)" }}>You are not a burden. Not to me. Not ever.</p>
-              <p>No matter what today looks like, I want you to know that I see you. Not just the smiling version, not just the version that holds everything together — but all of you. The tired you. The overwhelmed you. The you that just needs someone to sit with her in the quiet.</p>
-              <p className="italic" style={{ color: "hsl(340 60% 88%)" }}>I am here for that. Always.</p>
+              <p>My dearest Mary Iris, I know how heavy things feel right now. You have been carrying so much — and you have been doing it quietly, with grace, even when it costs you.</p>
+              <p>But honey, you do not have to be strong all the time. You are allowed to fall apart a little. You are allowed to feel tired. You are allowed to admit that things feel overwhelming sometimes. You are allowed to say this is too much — because you are just human after all, and that is okay.</p>
+              <p>Please remember this always, hon:</p>
+              <p className="font-medium" style={{ color: "hsl(330 90% 78%)" }}>You are never a burden. Not to me. Not ever.</p>
+              <p>No matter what kind of day you're having, I want you to know that I see you. Not just the smiling version of you, not just the version that tries to say it's alright when it's not — but all of you. The tired you. The overwhelmed you. The quiet you that just needs someone to stay.</p>
+              <p>Take all the time you need to breathe, to rest, and to heal. I'll still be here, even on the days where all you can do is simply get through the day.</p>
+              <p className="italic font-medium" style={{ color: "hsl(340 60% 88%)" }}>I love you, my Honey, my Mary Iris.</p>
             </div>
           </div>
         </motion.section>
