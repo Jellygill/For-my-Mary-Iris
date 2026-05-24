@@ -350,7 +350,7 @@ export default function Home() {
             className="relative z-10 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight font-light italic pt-8 px-8"
             style={{ color: "hsl(340 35% 94%)" }}
           >
-            "No matter how exhausting life becomes, Honey, I will still be here — loving you quietly through all of it."
+            Like a lily reaching quietly toward the light, my soul finds its peace in you. It's soft, gentle, and beautiful in ways words could never fully hold.
           </h2>
           <motion.div
             className="relative z-10 mt-8 mx-auto w-32 h-px"
@@ -362,19 +362,6 @@ export default function Home() {
           />
         </motion.section>
 
-        {/* Section 6: Footer */}
-        <footer className="pt-16 pb-10 text-center w-full">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.5 }}
-            className="font-serif italic text-lg"
-            style={{ color: "hsl(340 30% 65%)" }}
-          >
-            Made with love, for you.
-          </motion.p>
-        </footer>
 
       </div>
     </div>
