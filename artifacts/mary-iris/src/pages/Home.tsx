@@ -188,7 +188,9 @@ export default function Home() {
     setMounted(true);
 
     // Create and configure loop background music
-    const audio = new Audio("/magnolia.mp3");
+    const baseUrl = import.meta.env.BASE_URL || "/";
+    const audioPath = baseUrl.endsWith("/") ? `${baseUrl}magnolia.mp3` : `${baseUrl}/magnolia.mp3`;
+    const audio = new Audio(audioPath);
     audio.loop = true;
     audio.volume = 0.5;
     audioRef.current = audio;
