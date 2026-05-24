@@ -317,50 +317,14 @@ export default function Home() {
                   transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                   style={{ background: "conic-gradient(from 0deg, transparent, hsla(330, 90%, 72%, 0.18), transparent, hsla(345, 85%, 75%, 0.12), transparent)" }}
                 />
-                <div className="relative z-10 font-serif text-xl leading-relaxed space-y-4 text-justify" style={{ color: "hsl(328 60% 88%)" }}>
-                  <p>I don't think you realize how much comfort you bring to people just by being yourself, honey. Parang ang gaan lang ng pakiramdam whenever you're around. You have this softness in you that makes things feel a little less heavy.</p>
-                  <p>I just hope na today, kahit papaano, maramdaman mo rin how loved and appreciated you really are.</p>
-                </div>
+                <p className="relative z-10 font-serif text-2xl md:text-3xl leading-relaxed italic text-center" style={{ color: "hsl(328 60% 88%)" }}>
+                  "Like a lily reaching quietly toward the light, my soul finds its peace in you. It's soft, gentle, and beautiful in ways words could never fully hold."
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
         </section>
 
-        {/* Section 5: Final Quote */}
-        <motion.section
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-3xl py-16 relative w-full"
-        >
-          <div
-            className="quote-glow absolute inset-0 rounded-[3rem]"
-            style={{ background: "linear-gradient(135deg, hsla(335, 55%, 14%, 0.65), hsla(325, 45%, 12%, 0.55))", backdropFilter: "blur(10px)", border: "1px solid hsla(330, 75%, 65%, 0.18)" }}
-          />
-          <motion.div
-            className="absolute -top-3 left-1/2 -translate-x-1/2 text-5xl"
-            animate={{ y: [0, -5, 0], scale: [1, 1.1, 1] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            style={{ color: "hsl(328 85% 72%)", filter: "drop-shadow(0 0 12px hsl(328 85% 72% / 0.6))" }}
-          >
-            ♥
-          </motion.div>
-          <h2
-            className="relative z-10 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight font-light italic pt-8 px-8"
-            style={{ color: "hsl(340 35% 94%)" }}
-          >
-            "Like a lily reaching quietly toward the light, my soul finds its peace in you. It's soft, gentle, and beautiful in ways words could never fully hold."
-          </h2>
-          <motion.div
-            className="relative z-10 mt-8 mx-auto w-32 h-px"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.4 }}
-            style={{ background: "linear-gradient(90deg, transparent, hsl(330 90% 72%), hsl(345 85% 76%), transparent)" }}
-          />
-        </motion.section>
 
 
       </div>
