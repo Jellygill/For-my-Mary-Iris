@@ -216,9 +216,9 @@ export default function Home() {
               <p>But honey, you do not have to be strong all the time. You are allowed to fall apart a little. You are allowed to feel tired. You are allowed to admit that things feel overwhelming sometimes. You are allowed to say this is too much — because you are just human after all, and that is okay.</p>
               <p>Please remember this always, hon:</p>
               <p className="font-medium" style={{ color: "hsl(330 90% 78%)" }}>You are never a burden. Not to me. Not ever.</p>
-              <p>No matter what kind of day you're having, I want you to know that I see you. Not just the smiling version of you, not just the version that tries to say it's alright when it's not — but all of you. The tired you. The overwhelmed you. The quiet you that just needs someone to stay.</p>
+              <p>No matter what kind of day you're having, I want you to know that I see you. Not just the smiling version of you, not just the version that tries to say it's alright when it's not, but all of you. The tired you. The overwhelmed you. The quiet you that just needs someone to stay.</p>
               <p>Take all the time you need to breathe, to rest, and to heal. I'll still be here, even on the days where all you can do is simply get through the day.</p>
-              <p className="italic font-medium" style={{ color: "hsl(340 60% 88%)" }}>I love you, my Honey, my Mary Iris.</p>
+              <p className="italic font-medium" style={{ color: "hsl(340 60% 88%)" }}>I love you so much, my Honey, my Mary Iris.</p>
             </div>
           </div>
         </motion.section>
