@@ -290,7 +290,7 @@ export default function Home() {
                   whileHover={{ opacity: 1 }}
                   style={{ background: "linear-gradient(135deg, hsla(330, 90%, 72%, 0.1), hsla(345, 85%, 75%, 0.1))" }}
                 />
-                <span className="relative z-10">Click me</span>
+                <span className="relative z-10">Click Me ;)</span>
               </motion.button>
             )}
           </AnimatePresence>
